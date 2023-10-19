@@ -7,9 +7,6 @@ var mistakes= [];
 function includesNumber(value) {
     return /\d/.test(value);
 }
-function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
 export default async function (input) {
     dictionary ((err, dict) => {
         if (err) {
@@ -27,7 +24,7 @@ export default async function (input) {
         if ((errors.length > 0) && (mistakes[mistakes.length-1] != errors[errors.length-1])) {
             mistakes.push(errors);
             errors = [];
-            console.log("There was a spelling mistake: " + mistakes);
+            console.log("\nThere was a spelling mistake: " + mistakes);
         }
     })
 };
