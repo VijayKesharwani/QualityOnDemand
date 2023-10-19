@@ -5,8 +5,8 @@ name: MegaLinter
 
 on:  # yamllint disable-line rule:truthy
   # Pull Requests to main
-  pull_request:
-    branches: [master, main]
+  push:
+    branches: [Draft/ExtendSpectralLintingRule]
 
 env:  # Comment env block if you do not want to apply fixes
   # Apply linter fixes configuration
@@ -35,7 +35,12 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           fetch-depth: 0  # If you use VALIDATE_ALL_CODEBASE = true, you can remove this line to improve performances
-
+      - name: Install Spectral
+        run: npm install -g @stoplight/spectral
+      - name: Run spectral:oas Spectral Linting
+        run: spectral lint code/API_definitions/qod-api.yaml --verbose --ruleset .spectral-oas.yml
+        
+        
       # MegaLinter
       - name: MegaLinter
         id: ml
