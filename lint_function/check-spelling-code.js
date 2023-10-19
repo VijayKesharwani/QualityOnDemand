@@ -11,32 +11,33 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default async function (input) {
-    dictionary ((err, dict) => {
-        if (err) {
-            throw err;
-        }
-        var spell = nspell(dict)
-        var no_special_characters= input.replace(/[^\w\s]/gi, '')
-        const words = no_special_characters.split(separatorsRegex);
-       var errors= words
-          .filter((word) => !exceptions.includes(word))
-          .filter((word) => !spell.correct(word))
-          .filter((word) => !word == '')
-          .filter((word) => !includesNumber(word));
-
-        if (errors.length > 0) {
-            // Concatenate the spelling mistakes into a single string
-            const mistakesString = errors.join(', ');
-            // Print the mistakes and return them in the message
-            console.log("There was a spelling mistake: " + mistakesString);
-            return [{
-                message: `Spelling mistakes found: ${mistakesString}`,
-            }];
-        } else {
-            // Return a message indicating no spelling mistakes found
-            return [{
-                message: "No spelling mistakes found!",
-            }];
-        }
-    })
+	return new Promise((resolve, reject) => {
+		dictionary ((err, dict) => {
+			if (err) {
+                reject(err);
+                return;
+			}
+			var spell = nspell(dict)
+			var no_special_characters= input.replace(/[^\w\s]/gi, '')
+			const words = no_special_characters.split(separatorsRegex);
+			var errors= words
+			.filter((word) => !spell.correct(word))
+			.filter((word) => !word == '')
+			.filter((word) => !includesNumber(word));
+            
+			if (errors.length > 0) {
+                // Concatenate all spelling mistakes into a single string
+                const mistakesString = errors.join(', ');
+                // Print the mistakes
+                console.log("There was a spelling mistake: " + mistakesString);
+                resolve([{
+                    message: `Spelling mistakes found: ${mistakesString}`,
+                }]);
+            } else {
+                resolve([{
+                    message: "No spelling mistakes found!",
+                }]);
+            }
+		})
+	})
 };
