@@ -10,17 +10,17 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default async function (input) {
-    dictionary((err, dict) => {
+    dictionary ((err, dict) => {
         if (err) {
             throw err;
         }
-        var spell = nspell(dict);
-        var no_special_characters = input.replace(/[^\w\s]/gi, '');
+        var spell = nspell(dict)
+        var no_special_characters= input.replace(/[^\w\s]/gi, '')
         const words = no_special_characters.split(separatorsRegex);
-        var errors = words
-            .filter((word) => !spell.correct(word))
-            .filter((word) => !word == '')
-            .filter((word) => !includesNumber(word);
+        var errors= words
+          .filter((word) => !spell.correct(word))
+          .filter((word) => !word == '')
+          .filter((word) => !includesNumber(word));
 
         if (errors.length > 0) {
             // Concatenate the spelling mistakes into a single string
@@ -36,8 +36,5 @@ export default async function (input) {
                 message: "No spelling mistakes found!",
             }];
         }
-    });
-    // Sleep and return an empty array if no mistakes were found
-    await sleep(150000);
-    return [];
+    })
 };
