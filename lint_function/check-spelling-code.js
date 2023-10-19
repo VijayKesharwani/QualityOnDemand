@@ -30,7 +30,7 @@ export default async function (input) {
             console.log("\n There was a spelling mistake: " + mistakes);
         }
     })
-    sleep(150000).then(() => {return [{
-      message: `Spelling mistakes found: ${mistakes.join(', ')}`,
-    }];});
+    //sleep(150000).then(() => {return [{
+     // message: `Spelling mistakes found: ${mistakes.join(', ')}`,
+   // }];});
 };
