@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: QoD for enhanced comunication
   description: |
-    The Quality-On-Demand (QoD) API provides programmable interface for developers and other users (capabilities consumers) to request stable latency or throughput managed by Telco networks without the necessity to have an in-depth knowledge of the 4G/5G system or the overall complexity of the Telecom Systems.
+    The Quality-On-Demand (QoD) API provides programable interface for developers and other users (capabilities consumers) to request stable latency or throughput managed by Telco networks without the necessity to have an in-depth knowledge of the 4G/5G system or the overall complexity of the Telecom Systems.
 
     # Introduction
 
@@ -87,7 +87,7 @@ paths:
       tags:
         - QoS sessions
       summary: Creates a new session
-      description: Create QoS Session to manage latency/throughput priorities
+      description: Create QoS Session to manage latency/throughpt priorities
       operationId: createSession
       requestBody:
         description: Parameters to create a new session
@@ -413,7 +413,7 @@ components:
             startedAt:
               type: integer
               example: 1639479600
-              description: Timestamp of session start in seconds since Unix epoch
+              description: Timestamp of sesion start in seconds since Unix epoch
               format: int64
             expiresAt:
               type: integer
