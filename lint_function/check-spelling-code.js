@@ -11,34 +11,23 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 export default async function (input) {
-	return new Promise((resolve, reject) => {
-		dictionary ((err, dict) => {
-			if (err) {
-                reject(err);
-                return;
-			}
-			var spell = nspell(dict)
-			var no_special_characters= input.replace(/[^\w\s]/gi, '')
-			const words = no_special_characters.split(separatorsRegex);
-			var errors= words
-          		    .filter((word) => !exceptions.includes(word))
-          		    .filter((word) => !spell.correct(word))
-          		    .filter((word) => !word == '')
-          		    .filter((word) => !includesNumber(word));
-            
-			if (errors.length > 0) {
-                // Concatenate all spelling mistakes into a single string
-                const mistakesString = errors.join(', ');
-                // Print the mistakes
-                console.log("There was a spelling mistake: " + mistakesString);
-                resolve([{
-                    message: `Spelling mistakes found: ${mistakesString}`,
-                }]);
-            } else {
-                resolve([{
-                    message: "No spelling mistakes found!",
-                }]);
-            }
-		})
-	})
+    dictionary ((err, dict) => {
+        if (err) {
+            throw err;
+        }
+        var spell = nspell(dict)
+        var no_special_characters= input.replace(/[^\w\s]/gi, '')
+        const words = no_special_characters.split(separatorsRegex);
+        var errors= words
+          .filter((word) => !exceptions.includes(word))
+          .filter((word) => !spell.correct(word))
+          .filter((word) => !word == '')
+          .filter((word) => !includesNumber(word));
+
+        if ((errors.length > 0) && (mistakes[mistakes.length-1] != errors[errors.length-1])) {
+            mistakes.push(errors);
+            errors = [];
+            console.log("There was a spelling mistake: " + mistakes);
+        }
+    })
 };
