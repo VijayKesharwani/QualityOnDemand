@@ -1,6 +1,5 @@
 functions:
   - check-spelling-code
-  - check-telco-specific-code
 functionsDir: "./lint_function"
 rules:
   language-spelling-texts:
