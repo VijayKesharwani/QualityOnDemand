@@ -9,31 +9,36 @@ function includesNumber(value) {
 }
 
 export default async function (input) {
-  const no_special_characters = input.replace(/[^\w\s]/gi, '');
-  const words = no_special_characters.split(/\s/);
-
   const errors = [];
+  const suggestions = [];
 
-  for (const word of words) {
-    for (const replacement of replacements) {
-      if (word === replacement.original) {
-        errors.push(replacement);
-        break; // No need to check further replacements for this word
+  // Check the description text for specified terms
+  for (const path in input) {
+    const descriptions = JSON.stringify(input[path]).match(/description":\s*"(.*?)"/g) || [];
+
+    descriptions.forEach((description) => {
+      for (const replacement of replacements) {
+        const original = replacement.original;
+        const recommended = replacement.recommended;
+
+        if (description.includes(original)) {
+          errors.push(replacement);
+        }
       }
-    }
+    });
   }
 
   if (errors.length > 0) {
-    const suggestions = errors.map((error) => {
-      return `Consider replacing '${error.original}' with '${error.recommended}'.`;
+    errors.forEach((error) => {
+      suggestions.push(`Consider replacing '${error.original}' with '${error.recommended}'.`);
     });
 
     return [
       {
-        message: 'Telco-specific terminology found: ' + suggestions.join(', '),
+        message: 'Telco-specific terminology found in descriptions: ' + suggestions.join(', '),
       },
     ];
   }
 
   return [];
-}
+};
