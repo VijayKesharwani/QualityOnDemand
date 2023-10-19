@@ -1,31 +1,39 @@
-const { createSuggestion } = require("@stoplight/spectral-functions");
+var replacements = [
+  { original: 'UE', recommended: 'device' },
+  { original: 'MSISDN', recommended: 'phone number' },
+  { original: 'mobile network', recommended: 'network' }
+];
 
-module.exports = {
-  suggestInclusiveTerms: (target, inclusiveTerms, replacements) => {
-    const messages = [];
+function includesNumber(value) {
+  return /\d/.test(value);
+}
 
-    replacements.forEach((replacement) => {
-      const original = replacement.original;
-      const recommended = replacement.recommended;
+export default async function (input) {
+  const no_special_characters = input.replace(/[^\w\s]/gi, '');
+  const words = no_special_characters.split(/\s/);
 
-      const regex = new RegExp(replaceAll(original, /[.*+?^${}()|[\]\\]/g, "\\$&"), "g");
+  const errors = [];
 
-      target.replace(regex, (match, offset) => {
-        messages.push(
-          createSuggestion(`Consider replacing '${original}' with '${recommended}'.`, {
-            range: {
-              start: offset,
-              end: offset + original.length,
-            },
-          })
-        );
-      });
+  for (const word of words) {
+    for (const replacement of replacements) {
+      if (word === replacement.original) {
+        errors.push(replacement);
+        break; // No need to check further replacements for this word
+      }
+    }
+  }
+
+  if (errors.length > 0) {
+    const suggestions = errors.map((error) => {
+      return `Consider replacing '${error.original}' with '${error.recommended}'.`;
     });
 
-    return messages;
-  },
-};
+    return [
+      {
+        message: 'Telco-specific terminology found: ' + suggestions.join(', '),
+      },
+    ];
+  }
 
-function replaceAll(string, search, replace) {
-  return string.split(search).join(replace);
+  return [];
 }
