@@ -1,4 +1,4 @@
-var replacements = [
+const replacements = [
   { original: 'UE', recommended: 'device' },
   { original: 'MSISDN', recommended: 'phone number' },
   { original: 'mobile network', recommended: 'network' }
@@ -12,20 +12,22 @@ export default async function (input) {
   const errors = [];
   const suggestions = [];
 
-  // Check the description text for specified terms
+  // Iterate over properties of the input object
   for (const path in input) {
-    const descriptions = JSON.stringify(input[path]).match(/description":\s*"(.*?)"/g) || [];
+    const value = input[path];
 
-    descriptions.forEach((description) => {
+    // Check if the value is a string
+    if (typeof value === 'string') {
       for (const replacement of replacements) {
         const original = replacement.original;
         const recommended = replacement.recommended;
 
-        if (description.includes(original)) {
+        // Check if the original word exists in the value
+        if (value.includes(original)) {
           errors.push(replacement);
         }
       }
-    });
+    }
   }
 
   if (errors.length > 0) {
@@ -35,7 +37,7 @@ export default async function (input) {
 
     return [
       {
-        message: 'Telco-specific terminology found in descriptions: ' + suggestions.join(', '),
+        message: 'Telco-specific terminology found in input: ' + suggestions.join(', '),
       },
     ];
   }
