@@ -3,9 +3,9 @@ functions:
   - check-telco-specific-terms
 functionsDir: "./lint_function"
 rules:
-  language-spelling-texts:
+  check-spelling-code:
     message: "{{error}}"
-    severity: info
+    severity: warn
     given:
       - "$.info.title"
       - "$.info.summary"
@@ -14,7 +14,7 @@ rules:
       - "$..properties.*.description"
     then:
       function: check-spelling-code
-  reduce-telco-specific-terminology:
+  check-telco-specific-terms:
     message: "{{error}}"
     severity: hint
     description: |
