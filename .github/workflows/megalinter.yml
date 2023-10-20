@@ -45,8 +45,6 @@ jobs:
       - name: Run spectral:oas Spectral Linting
         run: spectral lint code/API_definitions/qod-api.yaml --verbose --ruleset .spectral-oas.yml
 
-
-
       # MegaLinter
       - name: MegaLinter
         id: ml
