@@ -35,12 +35,6 @@ export default async function (input) {
       suggestions.push(`Consider replacing '${error.original}' with '${error.recommended}'.`);
     });
 
-    return [
-      {
-        message: 'Telco-specific terminology found in input: ' + suggestions.join(', '),
-      },
-    ];
+    console.log('Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
-
-  return [];
 };
