@@ -5,7 +5,7 @@ functionsDir: "./lint_function"
 rules:
   language-spelling-texts:
     message: "{{error}}"
-    severity: warn
+    severity: info
     given:
       - "$.info.title"
       - "$.info.summary"
@@ -14,3 +14,11 @@ rules:
       - "$..properties.*.description"
     then:
       function: check-spelling-code
+  reduce-telco-specific-terminology:
+    message: "{{error}}"
+    severity: hint
+    description: |
+      This rule checks for telco-specific terminology in your API definitions and suggests more inclusive terms.
+    given: "$..*.*"
+    then:
+      function: check-telco-specific-terms
