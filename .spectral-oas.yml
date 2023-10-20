@@ -16,7 +16,7 @@ rules:
       function: check-spelling-code
   reduce-telco-specific-terminology:
     message: "{{error}}"
-    severity: warn
+    severity: hint
     description: |
       This rule checks for telco-specific terminology in your API definitions and suggests more inclusive terms.
     given: "$..*.*"
