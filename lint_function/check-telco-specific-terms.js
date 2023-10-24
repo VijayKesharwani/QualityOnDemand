@@ -26,7 +26,7 @@ export default async function (input) {
         const regex = new RegExp(`\\b${original}\\b`, 'g');
 
         // Check if the original word exists in the value
-        if (regex.test(value) && original === 'mobile network') {
+        if (regex.test(value)) {
           errors.push(replacement);
           suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
         }
@@ -34,7 +34,10 @@ export default async function (input) {
     }
   }
 
-  if (errors.length > 0) {
+  // Check if 'mobile network' is in the suggestions
+  const foundMobileNetwork = suggestions.some((suggestion) => suggestion.includes('mobile network'));
+
+  if (foundMobileNetwork) {
     console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
 };
