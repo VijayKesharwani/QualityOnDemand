@@ -10,10 +10,7 @@ function includesNumber(value) {
 
 export default async function (input) {
   const errors = [];
-  const suggestions = new Set();
-
-  // Phrases to check for as whole words
-  const phrasesToMatch = replacements.map(replacement => replacement.original);
+  const suggestions = [];
 
   // Iterate over properties of the input object
   for (const path in input) {
@@ -21,23 +18,23 @@ export default async function (input) {
 
     // Check if the value is a string
     if (typeof value === 'string') {
-      const processedPhrases = new Set(); // To track processed phrases in this property
-      for (const phrase of phrasesToMatch) {
-        // Use a regular expression to match the phrase as a whole word
-        const regex = new RegExp(`\\b${phrase}\\b`, 'g');
+      for (const replacement of replacements) {
+        const original = replacement.original;
+        const recommended = replacement.recommended;
 
-        // Check if the phrase exists in the value
-        if (regex.test(value) && !processedPhrases.has(phrase)) {
-          const replacement = replacements.find(replacement => replacement.original === phrase);
+        // Use a regular expression to match 'UE' as a standalone word
+        const regex = new RegExp(`\\b${original}\\b`, 'g');
+
+        // Check if the original word exists in the value
+        if (regex.test(value) && original === 'mobile network') {
           errors.push(replacement);
-          suggestions.add(`Consider replacing '${phrase}' with '${replacement.recommended}'.`);
-          processedPhrases.add(phrase); // Mark the phrase as processed for this property
+          suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
         }
       }
     }
   }
 
   if (errors.length > 0) {
-    console.log('Hint: Telco-specific terminology found in input: ' + Array.from(suggestions).join(', '));
+    console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
 };
