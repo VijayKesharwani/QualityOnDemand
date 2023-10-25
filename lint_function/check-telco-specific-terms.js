@@ -10,7 +10,7 @@ function includesNumber(value) {
 
 export default async function (input) {
   const errors = [];
-  const suggestions = [];
+  const suggestions = new Set(); // Use a Set to store unique suggestions
 
   // Iterate over properties of the input object
   for (const path in input) {
@@ -28,14 +28,17 @@ export default async function (input) {
         // Check if 'original' exists in the value
         if (regex.test(value)) {
           errors.push(replacement);
-          suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
+          suggestions.add(`Consider replacing '${original}' with '${recommended}'.`);
         }
       }
     }
   }
 
+  // Convert the Set to an array before logging
+  const uniqueSuggestions = Array.from(suggestions);
+
   // Check if any word from 'replacements' is in the suggestions
   if (errors.length > 0) {
-    console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
+    console.log('Hint: Telco-specific terminology found in input: ' + uniqueSuggestions.join(', '));
   }
 };
