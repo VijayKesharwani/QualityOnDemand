@@ -22,10 +22,10 @@ export default async function (input) {
         const original = replacement.original;
         const recommended = replacement.recommended;
 
-        // Use a regular expression to match 'UE' as a standalone word
+        // Use a regular expression to match 'original' as a standalone word
         const regex = new RegExp(`\\b${original}\\b`, 'g');
 
-        // Check if the original word exists in the value
+        // Check if 'original' exists in the value
         if (regex.test(value)) {
           errors.push(replacement);
           suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
@@ -34,10 +34,8 @@ export default async function (input) {
     }
   }
 
-  // Check if 'mobile network' is in the suggestions
-  const foundMobileNetwork = suggestions.some((suggestion) => suggestion.includes('mobile network'));
-
-  if (foundMobileNetwork) {
+  // Check if any word from 'replacements' is in the suggestions
+  if (errors.length > 0) {
     console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
 };
