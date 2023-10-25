@@ -5,8 +5,8 @@ const replacements = [
 ];
 
 export default async function (input) {
-  const errors = new Set(); // Use a Set to store unique errors
-  const suggestionSet = new Set(); // Use a Set to store unique suggestions
+  const errors = [];
+  const suggestions = [];
 
   // Iterate over properties of the input object
   for (const path in input) {
@@ -23,27 +23,15 @@ export default async function (input) {
 
         // Check if 'original' exists in the value
         if (regex.test(value)) {
-          const errorInfo = {
-            original,
-            recommended,
-            line: value // Add the input line to the error information
-          };
-          errors.add(errorInfo);
-          suggestionSet.add(`Consider replacing '${original}' with '${recommended}'.`);
+          errors.push(replacement);
+          suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
         }
       }
     }
   }
 
-  // Convert the Sets to arrays before logging
-  const uniqueErrors = Array.from(errors);
-  const uniqueSuggestions = Array.from(suggestionSet);
-
   // Check if any word from 'replacements' is in the suggestions
-  if (uniqueErrors.length > 0) {
-    uniqueErrors.forEach(error => {
-      console.log(`Hint: Telco-specific terminology '${error.original}' found in input line: ${error.line}`);
-    });
-    console.log('Suggestions: ' + uniqueSuggestions.join(', '));
+  if (errors.length > 0) {
+    console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
 };
