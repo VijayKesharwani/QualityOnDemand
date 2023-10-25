@@ -9,7 +9,7 @@ function includesNumber(value) {
 }
 
 export default async function (input) {
-  const errors = [];
+  const errors = new Set(); // Use a Set to store unique errors
   const suggestions = new Set(); // Use a Set to store unique suggestions
 
   // Iterate over properties of the input object
@@ -27,18 +27,19 @@ export default async function (input) {
 
         // Check if 'original' exists in the value
         if (regex.test(value)) {
-          errors.push(replacement);
+          errors.add(replacement);
           suggestions.add(`Consider replacing '${original}' with '${recommended}'.`);
         }
       }
     }
   }
 
-  // Convert the Set to an array before logging
+  // Convert the Sets to arrays before logging
+  const uniqueErrors = Array.from(errors);
   const uniqueSuggestions = Array.from(suggestions);
 
   // Check if any word from 'replacements' is in the suggestions
-  if (errors.length > 0) {
+  if (uniqueErrors.length > 0) {
     console.log('Hint: Telco-specific terminology found in input: ' + uniqueSuggestions.join(', '));
   }
 };
