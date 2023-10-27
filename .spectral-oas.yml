@@ -10,7 +10,7 @@ rules:
     given:
       - "$.info.title"
       - "$.info.summary"
-      - "$.info.description"
+      - "$.info.description.*"
       - "$.paths.*.*.description"
       - "$.components.*.description"
     then:
