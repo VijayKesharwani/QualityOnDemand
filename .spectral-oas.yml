@@ -1,3 +1,6 @@
+functions:
+  - check-telco-specific-code
+functionsDir: "./lint_function"
 rules:
   check-telco-specific-terms:
     message: "{{error}}"
