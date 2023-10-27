@@ -1,6 +1,3 @@
-functions:
-  - check-telco-specific-terms
-functionsDir: "./lint_function"
 rules:
   check-telco-specific-terms:
     message: "{{error}}"
@@ -8,6 +5,7 @@ rules:
     description: |
       This rule checks for telco-specific terminology in your API definitions and suggests more inclusive terms.
     given:
-      - "$..*.*"
+      - "$.paths.*.*.description"
+      - "$.components.*.description"
     then:
       function: check-telco-specific-terms
