@@ -1,5 +1,5 @@
 functions:
-  - check-telco-specific-code
+  - check-telco-specific-terms
 functionsDir: "./lint_function"
 rules:
   check-telco-specific-terms:
