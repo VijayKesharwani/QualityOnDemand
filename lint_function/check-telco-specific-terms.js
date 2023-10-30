@@ -1,17 +1,12 @@
+const replacements = [
+  { original: 'UE', recommended: 'device' },
+  { original: 'MSISDN', recommended: 'phone number' },
+  { original: 'mobile network', recommended: 'network' }
+];
+
 export default async function (input) {
   const errors = [];
   const suggestions = [];
-  const replacements = [
-    { original: 'mobile network', recommended: 'network' },
-    { original: 'MSISDN', recommended: 'phone number' }
-  ];
-
-  const termFlags = {}; // Store flags for each replacement term
-
-  // Initialize flags to false for all replacement terms
-  replacements.forEach(replacement => {
-    termFlags[replacement.original] = false;
-  });
 
   // Iterate over properties of the input object
   for (const path in input) {
@@ -21,18 +16,21 @@ export default async function (input) {
     if (typeof value === 'string') {
       for (const replacement of replacements) {
         const original = replacement.original;
+        const recommended = replacement.recommended;
 
-        // Check if the term is not flagged and exists in the value
-        if (!termFlags[original] && value.includes(original)) {
+        // Use a regular expression to match 'original' as a standalone word
+        const regex = new RegExp(`\\b${original}\\b`, 'g');
+
+        // Check if 'original' exists in the value
+        if (regex.test(value)) {
           errors.push(replacement);
-          suggestions.push(`Consider replacing '${original}' with '${replacement.recommended}'.`);
-          termFlags[original] = true; // Set the flag to true
+          suggestions.push(`Consider replacing '${original}' with '${recommended}'.`);
         }
       }
     }
   }
 
-  // Check if any words from 'replacements' are in the suggestions
+  // Check if any word from 'replacements' is in the suggestions
   if (errors.length > 0) {
     console.log('Hint: Telco-specific terminology found in input: ' + suggestions.join(', '));
   }
