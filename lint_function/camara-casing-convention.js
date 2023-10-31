@@ -7,6 +7,7 @@ function isCamelCase(str) {
 export default async function (input) {
   for (const path in input.paths) {
     const pathObject = input.paths[path];
+    console.log("vijay");
     for (const method in pathObject) {
       const operation = pathObject[method];
       if (operation.operationId) {
