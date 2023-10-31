@@ -1,13 +1,22 @@
 // lint_function/camara-casing-convention.js
+
 export default async function (input) {
   const errors = [];
   const suggestions = [];
 
-  for (const operationId of input) {
-    console.log(operationId);
-    if (!isCamelCase(operationId)) {
-      errors.push(operationId);
-      suggestions.push(`OperationId '${operationId}' should be in camelCase.`);
+  for (const path in input.paths) {
+    for (const method in input.paths[path]) {
+      const operation = input.paths[path][method];
+      if (operation.operationId) {
+        const operationId = operation.operationId;
+        if (!isCamelCase(operationId)) {
+          errors.push(operationId);
+          suggestions.push(`OperationId '${operationId}' should be in camelCase.`);
+        }
+      } else {
+        errors.push('OperationId missing');
+        suggestions.push(`OperationId is missing for the ${method} operation on path '${path}'.`);
+      }
     }
   }
 
