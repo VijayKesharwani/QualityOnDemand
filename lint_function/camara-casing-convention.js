@@ -4,6 +4,7 @@ export default async function (input) {
   const suggestions = [];
 
   for (const operationId of input) {
+    console.log(operationId);
     if (!isCamelCase(operationId)) {
       errors.push(operationId);
       suggestions.push(`OperationId '${operationId}' should be in camelCase.`);
