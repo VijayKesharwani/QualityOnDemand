@@ -6,7 +6,7 @@ rules:
     message: "{{error}}"
     severity: hint
     description: |
-      This rule checks Operation ids should follow a specific case convention: camel case.
-    given: "$.paths.*.*"
+      This rule checks if the operationId in your API definitions follows camel case or is missing.
+    given: "$.paths..*"
     then:
       function: camara-casing-convention
