@@ -1,26 +1,34 @@
+// lint_function/camara-casing-convention.js
+
 export default async function (input) {
-  for (const path in input) {
-    const pathObject = input[path];
-    console.log("vijay");
-    for (const method in pathObject) {
-      const operation = pathObject[method];
+  const errors = [];
+  const suggestions = [];
+
+  // Iterate over the paths in the API definition
+  for (const path in input.paths) {
+    for (const method in input.paths[path]) {
+      const operation = input.paths[path][method];
       if (operation.operationId) {
-        if (!isCamelCase(operation.operationId)) {
-          console.log(`WARN: Operation ID "${operation.operationId}" in path "${path}" does not follow camel case convention.`);
+        const operationId = operation.operationId;
+        // Check if operationId is not in camelCase
+        if (!isCamelCase(operationId)) {
+          errors.push(operationId);
+          suggestions.push(`OperationId '${operationId}' should be in camelCase.`);
         }
-        else {
-          console.log("Inside camel case else" +operation.operationId);
-        }
-      }
-      else {
-        console.log("Inside operationId case else" +operation.operationId);
+      } else {
+        errors.push('OperationId missing');
+        suggestions.push(`OperationId is missing for the ${method} operation on path '${path}'.`);
       }
     }
+  }
+
+  // Check if any errors were found
+  if (errors.length > 0) {
+    console.log('Hint: OperationId casing convention issues found: ' + suggestions.join(', '));
   }
 }
 
 function isCamelCase(str) {
-  // Regular expression to match valid camel case identifiers
-  const camelCaseRegex = /^[a-z][a-zA-Z0-9]*$/;
-  return camelCaseRegex.test(str);
+  // Check if a string is in camelCase
+  return /^[a-z][a-zA-Z0-9]*$/.test(str);
 }
