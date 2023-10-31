@@ -7,6 +7,6 @@ rules:
     severity: hint
     description: |
       This rule checks if the operationId in your API definitions follows camel case or is missing.
-    given: "$..paths[*]..operationId"
+    given: "$.paths.*.*"
     then:
       function: camara-casing-convention
