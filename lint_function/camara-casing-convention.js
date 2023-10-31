@@ -13,6 +13,12 @@ export default async function (input) {
         if (!isCamelCase(operation.operationId)) {
           console.log(`WARN: Operation ID "${operation.operationId}" in path "${path}" does not follow camel case convention.`);
         }
+        else {
+          console.log("Inside camel case else" +operation.operationId);
+        }
+      }
+      else {
+        console.log("Inside operationId case else" +operation.operationId);
       }
     }
   }
