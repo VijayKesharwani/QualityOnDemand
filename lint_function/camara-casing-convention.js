@@ -11,7 +11,7 @@ export default async function (input) {
       const operation = pathObject[method];
       if (operation.operationId) {
         if (!isCamelCase(operation.operationId)) {
-          console.warn(`WARN: Operation ID "${operation.operationId}" in path "${path}" does not follow camel case convention.`);
+          console.log(`WARN: Operation ID "${operation.operationId}" in path "${path}" does not follow camel case convention.`);
         }
       }
     }
