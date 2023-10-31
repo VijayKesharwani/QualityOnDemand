@@ -1,9 +1,9 @@
 functions:
-  - check-spelling-code
-  - check-telco-specific-terms
+  - camara-language-spelling
+  - camara-language-avoid-telco
 functionsDir: "./lint_function"
 rules:
-  check-spelling-code:
+  camara-language-spelling:
     message: "{{error}}"
     severity: warn
     given:
@@ -13,12 +13,12 @@ rules:
       - "$.paths.*.*.parameters[?(@.in==='query' || @.in==='path' || @.in==='cookie')].description"
       - "$..properties.*.description"
     then:
-      function: check-spelling-code
-  check-telco-specific-terms:
+      function: camara-language-spelling
+  camara-language-avoid-telco:
     message: "{{error}}"
     severity: hint
     description: |
       This rule checks for telco-specific terminology in your API definitions and suggests more inclusive terms.
     given: "$..*.*"
     then:
-      function: check-telco-specific-terms
+      function: camara-language-avoid-telco
