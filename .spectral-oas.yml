@@ -1,16 +1,12 @@
-formats:
-  camelCase:
-    type: string
-    pattern: '^[a-z][a-zA-Z0-9]*$'
-
+functions:
+  - camara-casing-convention
+functionsDir: "./lint_function"
 rules:
-  camara-operationId-casing-convention:
+  camara-casing-convention:
     message: "{{error}}"
     severity: hint
-    description: OperationId should be in camelCase
+    description: |
+      This rule checks Operation ids should follow a specific case convention: camel case.
     given: "$.paths.*.*.operationId"
     then:
-      field: operationId
-      function: pattern
-      functionOptions:
-        format: camelCase
+      function: camara-casing-convention
