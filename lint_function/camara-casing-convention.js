@@ -2,6 +2,7 @@
 export default async function (input) {
   const errors = [];
   const suggestions = [];
+  console.log(input);
   if (!isCamelCase(input)) {
     errors.push(input);
     suggestions.push(`OperationId '${input}' should be in camelCase.`);
