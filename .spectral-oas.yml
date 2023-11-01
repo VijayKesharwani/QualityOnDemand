@@ -30,6 +30,6 @@ rules:
       This rule checks Operation ids should follow a specific case convention: camel case.
     given:
       - "$.paths.*.*.operationId"
-      - "$.paths.*.*.callback.*.*.operationId"
+      - "$.paths.*.*.callback.*.*.*.operationId"
     then:
       function: camara-casing-convention
