@@ -2,13 +2,10 @@
 export default async function (input) {
   const errors = [];
   const suggestions = [];
-  console.log(input);
-  //for (const operationId of input) {
-    if (!isCamelCase(input)) {
-      errors.push(input);
-      suggestions.push(`OperationId '${input}' should be in camelCase.`);
-    }
-
+  if (!isCamelCase(input)) {
+    errors.push(input);
+    suggestions.push(`OperationId '${input}' should be in camelCase.`);
+  }
   if (errors.length > 0) {
     console.log('Hint: OperationId casing convention issues found: ' + suggestions.join(', '));
   }
