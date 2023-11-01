@@ -1,8 +1,7 @@
-// lint_function/camara-casing-convention.js
+// lint_function/camara-operationId-casing-convention.js
 export default async function (input) {
   const errors = [];
   const suggestions = [];
-  console.log(input);
   if (!isCamelCase(input)) {
     errors.push(input);
     suggestions.push(`OperationId '${input}' should be in camelCase.`);
