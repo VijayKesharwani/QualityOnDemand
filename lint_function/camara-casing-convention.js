@@ -2,7 +2,7 @@
 export default async function (input) {
   const errors = [];
   const suggestions = [];
-
+  console.log(input);
   for (const operationId of input) {
     if (!isCamelCase(operationId)) {
       errors.push(operationId);
