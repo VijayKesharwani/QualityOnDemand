@@ -5,6 +5,7 @@ export default async function (input) {
   const suggestions = [];
 
   for (const path in input.paths) {
+    console.log(path);
     for (const method in input.paths[path]) {
       const operation = input.paths[path][method];
       if (operation.operationId) {
