@@ -1,12 +1,14 @@
-functions:
-  - camara-casing-convention
-functionsDir: "./lint_function"
+formats:
+  camelCase:
+    type: string
+    pattern: '^[a-z][a-zA-Z0-9]*$'
+
 rules:
-  camara-casing-convention:
-    message: "{{error}}"
-    severity: hint
-    description: |
-      This rule checks if the operationId in your API definitions follows camel case or is missing.
-    given: "$..*.*"
+  camara-operationId-casing-convention:
+    description: OperationId should be in camelCase
+    given: $.paths.*.*.operationId
     then:
-      function: camara-casing-convention
+      field: operationId
+      function: pattern
+      functionOptions:
+        format: camelCase
