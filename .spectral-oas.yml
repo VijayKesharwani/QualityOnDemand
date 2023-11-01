@@ -5,8 +5,10 @@ formats:
 
 rules:
   camara-operationId-casing-convention:
+    message: "{{error}}"
+    severity: hint
     description: OperationId should be in camelCase
-    given: $.paths.*.*.operationId
+    given: "$.paths.*.*.operationId"
     then:
       field: operationId
       function: pattern
