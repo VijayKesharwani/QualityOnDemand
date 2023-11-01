@@ -1,7 +1,7 @@
 functions:
   - camara-language-spelling
   - camara-language-avoid-telco
-  - camara-casing-convention
+  - camara-operationId-casing-convention
 functionsDir: "./lint_function"
 rules:
   camara-language-spelling:
@@ -23,12 +23,11 @@ rules:
     given: "$..*.*"
     then:
       function: camara-language-avoid-telco
-  camara-casing-convention:
+  camara-operationId-casing-convention:
     message: "{{error}}"
     severity: hint
     description: |
       This rule checks Operation ids should follow a specific case convention: camel case.
-    given:
-      - "$.paths.*.*.operationId || .paths.*.*.callback.*.*.*.operationId"
+    given: "$.paths.*.*.operationId"
     then:
-      function: camara-casing-convention
+      function: camara-operationId-casing-convention
