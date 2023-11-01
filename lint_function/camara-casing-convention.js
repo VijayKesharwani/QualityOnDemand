@@ -4,10 +4,10 @@ export default async function (input) {
   const errors = [];
   const suggestions = [];
 
-  for (const path in input.paths) {
+  for (const path in input) {
     console.log(path);
-    for (const method in input.paths[path]) {
-      const operation = input.paths[path][method];
+    for (const method in input[path]) {
+      const operation = input[path][method];
       if (operation.operationId) {
         const operationId = operation.operationId;
         if (!isCamelCase(operationId)) {
