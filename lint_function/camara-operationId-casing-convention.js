@@ -7,7 +7,7 @@ export default async function (input) {
     suggestions.push(`OperationId '${input}' should be in camelCase.`);
   }
   if (errors.length > 0) {
-    console.log('Hint: OperationId casing convention issues found: ' + suggestions.join(', '));
+    console.error('Error: OperationId casing convention issues found: ' + suggestions.join(', '));
   }
 }
 
