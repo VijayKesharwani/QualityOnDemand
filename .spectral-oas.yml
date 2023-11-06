@@ -1,5 +1,5 @@
 rules:
-  camel-case-name:
+  camara-operationid-casing-convention:
     message: Operation Id must be in Camel case "{{error}}"
     severity: hint
     description: |
@@ -9,3 +9,13 @@ rules:
       function: casing
       functionOptions:
         type: camel
+  camara-parameter-casing-convention:
+    message: Path URI must be in Kebab case "{{error}}"
+    severity: hint
+    description: |
+        This rule checks Operation ids should follow a specific case convention: kebab case.
+    given: "$.paths"
+    then:
+      function: casing
+      functionOptions:
+        type: kebab
