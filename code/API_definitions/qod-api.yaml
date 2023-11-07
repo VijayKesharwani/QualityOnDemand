@@ -294,7 +294,7 @@ paths:
         - threeLegged:
             - "qod-sessions-delete"
 
-  /qos-profiles:
+  /qos-Profiles:
     get:
       tags:
         - QoS Profiles
