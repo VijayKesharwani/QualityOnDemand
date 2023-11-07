@@ -12,4 +12,4 @@ rules:
       - "$.paths.*.*.parameters[?(@.in==='query' || @.in==='path' || @.in==='cookie')].description"
       - "$..properties.*.description"
     then:
-      function: "./lint_function/camara-language-spelling.mjs"
+      function: camara-language-spelling.js
