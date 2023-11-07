@@ -1,6 +1,5 @@
 functions:
   - camara-language-spelling
-  - camara-language-avoid-telco
 functionsDir: "./lint_function"
 rules:
   camara-language-spelling:
@@ -14,11 +13,3 @@ rules:
       - "$..properties.*.description"
     then:
       function: camara-language-spelling
-  camara-language-avoid-telco:
-    message: "{{error}}"
-    severity: hint
-    description: |
-      This rule checks for telco-specific terminology in your API definitions and suggests more inclusive terms.
-    given: "$..*.*"
-    then:
-      function: camara-language-avoid-telco
