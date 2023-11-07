@@ -22,13 +22,3 @@ rules:
     given: "$..*.*"
     then:
       function: camara-language-avoid-telco
-  camara-operationid-casing-convention:
-    message: Operation Id must be in Camel case "{{error}}"
-    severity: hint
-    description: |
-        This rule checks Operation ids should follow a specific case convention: camel case.
-    given: "$.paths.*.*.operationId"
-    then:
-      function: casing
-      functionOptions:
-        type: camel
