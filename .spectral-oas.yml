@@ -11,14 +11,16 @@ rules:
     given: "$..*.*"
     then:
       function: camara-language-avoid-telco
-  camara-operationId-casing-convention:
-    message: "{{error}}"
+  camara-operationid-casing-convention:
+    message: Operation Id must be in Camel case "{{error}}"
     severity: hint
     description: |
-      This rule checks Operation ids should follow a specific case convention: camel case.
+        This rule checks Operation ids should follow a specific case convention: camel case.
     given: "$.paths.*.*.operationId"
     then:
-      function: camara-operationId-casing-convention
+      function: casing
+      functionOptions:
+        type: camel
   camara-parameter-casing-convention:
     description: Paths should be kebab-case.
     message: "{{property}} should be kebab-case (lower-case and separated with hyphens)"
