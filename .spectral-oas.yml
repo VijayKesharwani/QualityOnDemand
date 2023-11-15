@@ -29,3 +29,13 @@ rules:
       function: pattern
       functionOptions:
         match: "^(\/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$"
+  camara-schema-casing-convention:
+    message: Schemas must be in Upeer Camel case "{{error}}"
+    severity: hint
+    description: |
+        This rule checks schema should follow a specific case convention: pascal case.
+    given: "$.components.schemas"
+    then:
+      function: casing
+      functionOptions:
+        type: pascal
