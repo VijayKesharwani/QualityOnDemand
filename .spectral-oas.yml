@@ -1,6 +1,5 @@
 functions:
   - camara-language-avoid-telco
-  - camara-operationId-casing-convention
 functionsDir: "./lint_function"
 rules:
   camara-language-avoid-telco:
