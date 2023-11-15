@@ -20,22 +20,13 @@ rules:
       function: casing
       functionOptions:
         type: camel
-  camara-parameter-casing-convention:
-    description: Paths should be kebab-case.
-    message: "{{property}} should be kebab-case (lower-case and separated with hyphens)"
-    severity: warn
-    given: $.paths[*]~
-    then:
-      function: pattern
-      functionOptions:
-        match: "^(\/|[a-z0-9-.]+|{[a-zA-Z0-9_]+})+$"
   camara-schema-casing-convention:
     message: Schemas must be in Upeer Camel case "{{error}}"
-    severity: hint
+    severity: warn
     description: |
         This rule checks schema should follow a specific case convention: pascal case.
     given: "$.components.schemas"
     then:
       function: casing
       functionOptions:
-        type: pascal
+        match: "^(\/|[A-Z][a-z0-9]*([A-Z][a-z0-9]*)*)$"
