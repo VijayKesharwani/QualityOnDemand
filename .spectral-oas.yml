@@ -21,11 +21,10 @@ rules:
       functionOptions:
         type: camel
   camara-schema-casing-convention:
-    message: Schemas must be in Upeer Camel case "{{error}}"
+    description: This rule checks schema should follow a specific case convention: pascal case.
+    message: "{{property}} should be pascal (uppper camel case)"
     severity: warn
-    description: |
-        This rule checks schema should follow a specific case convention: pascal case.
-    given: "$.components.schemas"
+    given: $.components.schemas
     then:
       function: pattern
       functionOptions:
