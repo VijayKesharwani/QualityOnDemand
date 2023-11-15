@@ -236,7 +236,7 @@ paths:
           description: Session ID that was obtained from the createSession operation
           required: true
           schema:
-            $ref: "#/components/schemas/SessionId"
+            $ref: "#/components/schemas/sessionId"
       responses:
         "200":
           description: Contains information about active session
@@ -273,7 +273,7 @@ paths:
           description: Session ID that was obtained from the createSession operation
           required: true
           schema:
-            $ref: "#/components/schemas/SessionId"
+            $ref: "#/components/schemas/sessionId"
       responses:
         "204":
           description: Session deleted
@@ -294,7 +294,7 @@ paths:
         - threeLegged:
             - "qod-sessions-delete"
 
-  /qos-profiles:
+  /Qos-profiles:
     get:
       tags:
         - QoS Profiles
@@ -335,7 +335,7 @@ paths:
         "503":
           $ref: "#/components/responses/Generic503"
 
-  /qos-profiles/{name}:
+  /Qos-profiles/{name}:
     get:
       tags:
         - QoS Profiles
@@ -397,7 +397,7 @@ components:
             qod-profiles-read: Retrieval of QoS profiles
 
   schemas:
-    SessionId:
+    sessionId:
       description: Session ID in UUID format
       type: string
       format: uuid
@@ -409,7 +409,7 @@ components:
         - type: object
           properties:
             sessionId:
-              $ref: "#/components/schemas/SessionId"
+              $ref: "#/components/schemas/sessionId"
             startedAt:
               type: integer
               example: 1639479600
@@ -814,7 +814,7 @@ components:
                 - qosStatus
               properties:
                 sessionId:
-                  $ref: "#/components/schemas/SessionId"
+                  $ref: "#/components/schemas/sessionId"
                 qosStatus:
                   $ref: "#/components/schemas/EventQosStatus"
                 statusInfo:
