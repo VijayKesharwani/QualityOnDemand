@@ -27,6 +27,6 @@ rules:
         This rule checks schema should follow a specific case convention: pascal case.
     given: "$.components.schemas"
     then:
-      function: casing
+      function: pattern
       functionOptions:
         match: "^(\/|[A-Z][a-z0-9]*([A-Z][a-z0-9]*)*)$"
