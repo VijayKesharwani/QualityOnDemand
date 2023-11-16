@@ -20,12 +20,3 @@ rules:
       function: casing
       functionOptions:
         type: camel
-  camara-schema-casing-convention:
-    description: This rule checks schema should follow a specific case convention: pascal case.
-    message: "{{property}} should be pascal (uppper camel case)"
-    severity: warn
-    given: $.components.schemas[*]~
-    then:
-      function: pattern
-      functionOptions:
-        match: "^([A-Z][a-z0-9]*([A-Z][a-z0-9]*)*)$"
