@@ -83,7 +83,7 @@ servers:
         description: Base path for the QoD API
 paths:
   /sessions:
-    post:
+    posts:
       tags:
         - QoS sessions
       summary: Creates a new session
