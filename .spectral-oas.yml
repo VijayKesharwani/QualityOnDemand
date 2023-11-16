@@ -40,9 +40,9 @@ rules:
         match: "^\/([a-z0-9]+(-[a-z0-9]+)*)?(\/[a-z0-9]+(-[a-z0-9]+)*|\/{.+})*$"  # doesn't allow /asasd{asdas}sadas pattern or not closed braces
   camara-http-methods:
     description: "Ensure that all path URLs have valid HTTP methods (GET, PUT, POST, DELETE, PATCH, OPTIONS)."
-    message: "Invalid HTTP method for '{{property}}'. Must be one of get, put, post, delete, patch, options."
+    message: "Invalid HTTP method for '{{path}}'. Must be one of get, put, post, delete, patch, options."
     severity: error
-    given: "$.paths.*.[*]~"
+    given: "".paths.*.*"
     then:
       function: pattern
       functionOptions:
