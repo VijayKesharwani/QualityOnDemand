@@ -42,7 +42,7 @@ rules:
     description: "Ensure that all path URLs have valid HTTP methods (GET, PUT, POST, DELETE, PATCH, OPTIONS)."
     message: "Invalid HTTP method for '{{path}}'. Must be one of get, put, post, delete, patch, options."
     severity: error
-    given: $.paths.*.*
+    given: $.paths.*.[*]~
     then:
       function: pattern
       functionOptions:
