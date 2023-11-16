@@ -50,7 +50,9 @@ rules:
   camara-get-no-request-body:
     message: There must be no request body for Get and DELETE
     severity: error
-    given: "$.paths.*.(get|delete)"
+    given: 
+      - "$.paths.*.get"
+      - "$.paths.*.delete"
     then:
       field: requestBody
       function: falsy
