@@ -47,3 +47,10 @@ rules:
       function: pattern
       functionOptions:
         match: "^(get|put|post|delete|patch|options)$"
+  camara-get-no-request-body:
+    message: There must be no request body for Get and DELETE
+    severity: error
+    given: "$.paths.*.(get|delete)"
+    then:
+      field: requestBody
+      function: falsy
