@@ -237,6 +237,13 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/sessionId"
+      requestBody:
+        description: Parameters to create a new session
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSession"
+        required: true
       responses:
         "200":
           description: Contains information about active session
@@ -274,6 +281,13 @@ paths:
           required: true
           schema:
             $ref: "#/components/schemas/sessionId"
+      requestBody:
+        description: Parameters to create a new session
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateSession"
+        required: true
       responses:
         "204":
           description: Session deleted
