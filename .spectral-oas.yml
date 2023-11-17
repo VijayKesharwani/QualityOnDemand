@@ -56,3 +56,11 @@ rules:
     then:
       field: requestBody
       function: falsy
+  camara-discriminator-use:
+    description: |
+      Ensure that API definition YAML files with oneOf or anyOf sections include a discriminator object for serialization, deserialization, and validation.
+    given: "$..[?(@.oneOf || @.anyOf)]"
+    then:
+      field: discriminator
+      function: truthy
+      description: "Discriminator object is required when using oneOf or anyOf."
