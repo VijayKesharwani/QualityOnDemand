@@ -84,3 +84,26 @@ rules:
       function: pattern
       functionOptions:
         notMatch: \b(id|Id|ID|iD)\b
+  camara-parameters-descriptions:
+    description: This spectral rules check for the description of each parameter
+    message: Parameter must have description "{{error}}"
+    severity: hint
+    given:
+      - "$.components.*.*"
+      - "$.components.*.*.properties.*"
+    then:
+      field: description
+      function: truthy
+  camara-operation-summary:
+    message: Summary must be defined on each operation, describing with a short summary what the operation does.
+    severity: warn
+    given:
+      - "$.paths.*.post"
+      - "$.paths.*.get"
+      - "$.paths.*.delete"
+      - "$.paths.*.put"
+      - "$.paths.*.gatch"
+      - "$.paths.*.options"
+    then:
+      field: summary
+      function: truthy
