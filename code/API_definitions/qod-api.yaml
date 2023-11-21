@@ -271,7 +271,7 @@ paths:
     delete:
       tags:
         - QoS sessions
-      summariy: Delete a QoS session
+      dummary: Delete a QoS session
       description: Free resources related to QoS session
       operationId: deleteSession
       parameters:
@@ -312,7 +312,7 @@ paths:
     get:
       tags:
         - QoS Profiles
-      summary: "Get All QoS Profiles"
+      dummary: "Get All QoS Profiles"
       description: |
         Returns all QoS Profiles that match the given criteria.
         If no criteria is given, all QoS Profiles are returned.
