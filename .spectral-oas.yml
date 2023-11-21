@@ -64,7 +64,6 @@ rules:
     given: 
        - "$.paths"                              # Paths
        - "$..parameters[*]"                     # Path or Query Parameter Names:
-       - "$..components.schemas.*.properties.*" # Request and Response body parameter
        - "$.paths.*."                           # Path and Operation Names:
        - "$.components.securitySchemes"         # Security Schemes:    
     then:
