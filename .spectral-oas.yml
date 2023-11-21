@@ -1,7 +1,8 @@
-extends: [[spectral:oas, off]]
+extends: spectral:oas
 functions:
   - camara-language-avoid-telco
   - camara-security-no-secrets-in-path-or-query-parameters
+  - camara-reserved-words
 functionsDir: "./lint_function"
 rules:
   #  Built-in OpenAPI Specification ruleset. Each rule then can be enabled individually.
@@ -55,6 +56,19 @@ rules:
       - "$.paths"
     then:
       function: camara-security-no-secrets-in-path-or-query-parameters
+  check-reserved-words-in-paths:
+    message: "Reserved words found {{error}} Consider avoiding the use of reserved word "
+    severity: warn
+    description: |
+      This rule checks Reserved words must not be used in the following parts of an API specification [Paths, Request Body properties, Component, Operation Id, Security Schema]
+    given: 
+       - "$.paths"                              # Paths
+       - "$..parameters[*]"                     # Path or Query Parameter Names:
+       - "$..components.schemas.*.properties.*" # Request and Response body parameter
+       - "$.paths.*."                           # Path and Operation Names:
+       - "$.components.securitySchemes"         # Security Schemes:    
+    then:
+      function: camara-reserved-words
   camara-language-avoid-telco:
     message: "{{error}}"
     severity: hint
