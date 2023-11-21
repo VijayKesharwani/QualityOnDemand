@@ -86,7 +86,7 @@ paths:
     posts:
       tags:
         - QoS sessions
-      summariy: Creates a new session
+      summary: Creates a new session
       description: Create QoS Session to manage latency/throughput priorities
       operationId: CreateSession
       requestBody:
@@ -271,7 +271,7 @@ paths:
     delete:
       tags:
         - QoS sessions
-      summary: Delete a QoS session
+      summariy: Delete a QoS session
       description: Free resources related to QoS session
       operationId: deleteSession
       parameters:
