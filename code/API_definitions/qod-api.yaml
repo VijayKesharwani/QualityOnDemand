@@ -353,7 +353,7 @@ paths:
     get:
       tags:
         - QoS Profiles
-      summary: "Get QoS Profile for a given name"
+      dummary: "Get QoS Profile for a given name"
       operationId: getQosProfile
       description: |
         Returns a QoS Profile that matches the given name.
