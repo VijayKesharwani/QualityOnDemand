@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.0.2
 info:
   title: QoD for enhanced comunication
   description: |
@@ -223,15 +223,15 @@ paths:
         - threeLegged:
             - "qod-sessions-write"
 
-  /sessions/{sessionId}:
-    get:
+  /sessions/{Id}:
+    case:
       tags:
         - QoS sessions
       summary: Get QoS session information
       description: Querying for QoS session resource information details
-      operationId: getSession
+      operationId: switch
       parameters:
-        - name: sessionId
+        - name: Id
           in: path
           description: Session ID that was obtained from the createSession operation
           required: true
@@ -349,7 +349,7 @@ paths:
         "503":
           $ref: "#/components/responses/Generic503"
 
-  /Qos-profiles/{name}:
+  /Qos-profiles/{finally}:
     get:
       tags:
         - QoS Profiles
