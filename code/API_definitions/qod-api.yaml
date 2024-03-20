@@ -85,6 +85,13 @@ tags:
     description: Manage QoS Profiles
 paths:
   /sessions:
+    parameters:
+      - name: trafficInfluenceID
+        in: path
+        description: Identifier of the specific TrafficInfluence resource to be retrieved, modified or deleted. It is the value used to fill trafficInfluenceID parameter
+        required: true
+        schema:
+          type: string
     post:
       tags:
         - QoS Sessions
