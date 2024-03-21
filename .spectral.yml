@@ -115,11 +115,14 @@ rules:
     description: "Ensure that all path URLs have valid HTTP methods (GET, PUT, POST, DELETE, PATCH, OPTIONS)."
     message: "Invalid HTTP method for '{{path}}'. Must be one of get, put, post, delete, patch, options."
     severity: error
-    given: $.paths[*][?(property != 'parameters')]
+    given: "$.paths[*]"
     then:
-      function: pattern
-      functionOptions:
-        match: "^(get|put|post|delete|patch|options)$"
+      - field: keys
+        function: pattern
+        functionOptions:
+          match: "^(get|put|post|delete|patch|options)$"
+          exclude: true  # Exclude paths that match the pattern
+        errorMessage: "{{path}} does not have a valid HTTP method."
     recommended: true 
 
   camara-get-no-request-body:
