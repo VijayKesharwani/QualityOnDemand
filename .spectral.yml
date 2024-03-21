@@ -118,7 +118,9 @@ rules:
     given: "$.paths[*][*]"
     then:
       - where:
-          - has: [post, get, delete, put, patch, options]
+          - anyOf:
+              - equals: ["get", "put", "post", "delete", "patch", "options"]
+                exists: true 
         errorUnless:
           - allOf:
             - pattern: "^(get|put|post|delete|patch|options)$"
