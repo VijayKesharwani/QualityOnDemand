@@ -108,23 +108,8 @@ rules:
     then:
       function: pattern
       functionOptions:
-        match: "^(get|put|post|delete|patch|options)$"
+        match: "^(get|put|post|delete|patch|options|parameters)$"
     recommended: true  # Set to true/false to enable/disable this rule
-
-  camara-httpnew-methods-new:
-    description: "Ensure that all path URLs have valid HTTP methods (GET, PUT, POST, DELETE, PATCH, OPTIONS)."
-    message: "Invalid HTTP method for '{{path}}'. Must be one of get, put, post, delete, patch, options."
-    severity: error
-    given: "$.paths[*][*]"
-    then:
-      - where:
-          - anyOf:
-              - equals: ["get", "put", "post", "delete", "patch", "options"]
-                exists: true 
-        errorUnless:
-          - allOf:
-            - pattern: "^(get|put|post|delete|patch|options)$"
-    recommended: true 
 
   camara-get-no-request-body:
     message: There must be no request body for Get and DELETE
