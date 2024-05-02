@@ -13,6 +13,9 @@ on: # yamllint disable-line rule:truthy
     branches: [master, main]
   workflow_call:
 
+permissions:
+  pull-requests: write
+
 env: # Comment env block if you do not want to apply fixes
   # Apply linter fixes configuration
   APPLY_FIXES: all # When active, APPLY_FIXES must also be defined as environment variable (in github/workflows/mega-linter.yml or other CI tool)
