@@ -10,7 +10,7 @@ on: # yamllint disable-line rule:truthy
   workflow_call:
  
 concurrency:
-  group: ${{ github.ref }}-${{ github.workflow }}
+  group: spectral-${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
 jobs:
