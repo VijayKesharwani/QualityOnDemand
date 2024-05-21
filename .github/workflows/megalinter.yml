@@ -49,7 +49,7 @@ jobs:
       - name: Install Gherkin Linter
         run: npm install -g gherkin-lint
       - name: Run Gherkin Linting
-        run: gherkin-lint code/Test_definitions/Test.feature
+        run: gherkin-lint code/Test_definitions/QoD_API_Test.feature
     # - name: Run spectral:oas Spectral Linting
     #   run: spectral lint code/API_definitions/*.yaml --verbose --ruleset .spectral.yml
         # Replace openapi.yaml file with your API specification file
