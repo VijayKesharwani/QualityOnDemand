@@ -22,5 +22,6 @@
   "no-unused-variables": "on",
   "no-background-only-scenario": "on",
   "no-empty-background": "on",
-  "scenario-size": ["on", { "steps-length": {"Background": 15, "Scenario": 15}}]
+  "scenario-size": ["on", { "steps-length": {"Background": 15, "Scenario": 15}}],
+  "only-one-when": "on"
 }
