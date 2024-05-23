@@ -24,5 +24,26 @@
   "no-empty-background": "on",
   "scenario-size": ["on", { "steps-length": {"Background": 15, "Scenario": 15}}],
   "only-one-when": "on",
-  "allowed-tags": ["on", {"tags": ["@watch", "@wip"], "patterns": ["^@todo$"]}]
+  "allowed-tags": ["on", {"tags": ["@watch", "@wip"], "patterns": ["^@todo$"]}],
+  "file-name": ["on", {"style": "PascalCase"}],
+  "max-scenarios-per-file": ["on", {"maxScenarios": 10, "countOutlineExamples": true}],
+  "no-restricted-patterns": ["on", {
+    "Global": [
+      "^globally restricted pattern"
+    ],
+    "Feature": [
+      "poor description",
+      "validate",
+      "verify"
+    ],
+    "Background": [
+      "show last response",
+      "a debugging step"
+    ],
+    "Scenario": [
+      "show last response",
+      "a debugging step"
+    ]
+  }],
+  "required-tags": ["on", {"tags": ["^@issue:[1-9]\\d*$"], "ignoreUntagged": false}]
 }
