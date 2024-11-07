@@ -241,8 +241,6 @@ paths:
               examples:
                 subscription-active:
                   $ref: "#/components/examples/SUBSCRIPTION_ACTIVE"
-                subscription-deleted:
-                  $ref: "#/components/examples/SUBSCRIPTION_DELETED"
         "400":
           $ref: "#/components/responses/SubscriptionIdRequired"
         "401":
@@ -1243,20 +1241,3 @@ components:
           initialEvent: true
         startsAt: 2024-06-15T09:30:02.871Z
         expiresAt: 2024-08-01T14:18:23.682Z
-
-    SUBSCRIPTION_DELETED:
-      value:
-        id: "124005"
-        sink: https://endpoint.example.com/sink
-        protocol: HTTP
-        source: https://dataUsageServer.supertelco.com
-        type: org.camaraproject.device-data-volume-subscriptions.v0.subscription-deleted
-        specversion: "1.0"
-        datacontenttype: application/json
-        data:
-          device:
-            phoneNumber: "+123456789"
-          subscriptionId: "dv10-h556-rt89-1405"
-          deletionReason: "USER_REQUESTED"
-          deletionTime: 2024-05-10T15:45:23.682Z
-        time: 2024-05-10T15:45:23.682Z
