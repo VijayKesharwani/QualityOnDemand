@@ -684,9 +684,9 @@ components:
       discriminator:
         propertyName: "type"
         mapping:
-          org.camaraproject.device-data-volume-subscriptions.v0.data-50-percent: "#/components/schemas/EventDataUsage50PERCENT"
-          org.camaraproject.device-data-volume-subscriptions.v0.data-75-percent: "#/components/schemas/EventDataUsage75PERCENT"
-          org.camaraproject.device-data-volume-subscriptions.v0.data-90-percent: "#/components/schemas/EventDataUsage90PERCENT"
+          org.camaraproject.device-data-volume-subscriptions.v0.data-50-percent: "#/components/schemas/EventDataUsage50Percent"
+          org.camaraproject.device-data-volume-subscriptions.v0.data-75-percent: "#/components/schemas/EventDataUsage75Percent"
+          org.camaraproject.device-data-volume-subscriptions.v0.data-90-percent: "#/components/schemas/EventDataUsage90Percent"
           org.camaraproject.device-data-volume-subscriptions.v0.data-exceeded: "#/components/schemas/EventDataUsageExceeded"
           org.camaraproject.device-data-volume-subscriptions.v0.subscription-ends: "#/components/schemas/EventSubscriptionEnds"
 
@@ -706,7 +706,7 @@ components:
       example: "2018-04-05T17:31:00Z"
 
     # Event structures for data volume
-    EventDataUsage50PERCENT:
+    EventDataUsage50Percent:
       description: Event structure for data usage 50% threshold alerts
       allOf:
         - $ref: "#/components/schemas/CloudEvent"
@@ -715,7 +715,7 @@ components:
             data:
               $ref: "#/components/schemas/BasicDeviceEventData"
 
-    EventDataUsage75PERCENT:
+    EventDataUsage75Percent:
       description: Event structure for data usage 75% threshold alerts
       allOf:
         - $ref: "#/components/schemas/CloudEvent"
@@ -724,7 +724,7 @@ components:
             data:
               $ref: "#/components/schemas/BasicDeviceEventData"
 
-    EventDataUsage90PERCENT:
+    EventDataUsage90Percent:
       description: Event structure for data usage 90% threshold alerts
       allOf:
         - $ref: "#/components/schemas/CloudEvent"
