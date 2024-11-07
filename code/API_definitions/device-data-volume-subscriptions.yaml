@@ -1248,6 +1248,7 @@ components:
       value:
         id: "124005"
         sink: https://endpoint.example.com/sink
+        protocol: HTTP
         source: https://dataUsageServer.supertelco.com
         type: org.camaraproject.device-data-volume-subscriptions.v0.subscription-deleted
         specversion: "1.0"
