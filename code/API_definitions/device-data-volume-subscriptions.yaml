@@ -614,6 +614,9 @@ components:
       description: |
         Event types that can be triggered for device data volume monitoring.
       enum:
+        - org.camaraproject.device-data-volume-subscriptions.v0.data-50-percent
+        - org.camaraproject.device-data-volume-subscriptions.v0.data-75-percent
+        - org.camaraproject.device-data-volume-subscriptions.v0.data-90-percent
         - org.camaraproject.device-data-volume-subscriptions.v0.data-usage-threshold
         - org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
 
@@ -634,9 +637,9 @@ components:
       type: string
       description: |
         data-usage-threshold - Event triggered when the device reaches certain data usage thresholds (e.g., 50%, 75%, 90% of the data plan used).
-        
+
         data-usage-exceeded - Event triggered when the device exceeds its allocated data volume for a billing period.
-        
+
         subscription-ends - Event triggered when the subscription is terminated.
       enum:
         - org.camaraproject.device-data-volume-subscriptions.v0.data-usage-threshold
@@ -1235,7 +1238,7 @@ components:
         sink: https://endpoint.example.com/sink
         protocol: HTTP
         types:
-          - "org.camaraproject.device-data-volume-subscriptions.v0.data-usage"
+          - "org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded"
         config:
           subscriptionDetail:
             device:
