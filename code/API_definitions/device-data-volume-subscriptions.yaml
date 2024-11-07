@@ -634,9 +634,11 @@ components:
       description: |
         data-50-percent - Event triggered when the device reaches 50% data usage thresholds of the data plan used.
 
-        data-75-percent - Event triggered when the device reaches 50% data usage thresholds of the data plan used.
+        data-75-percent - Event triggered when the device reaches 75% data usage thresholds of the data plan used.
 
-        data-90-percent - Event triggered when the device reaches 50% data usage thresholds of the data plan used.
+        data-90-percent - Event triggered when the device reaches 90% data usage thresholds of the data plan used.
+
+        data-exceeded - Event triggered when the device reaches 100% data usage exceeded of the data plan used.
 
         subscription-ends - Event triggered when the subscription is terminated.
       enum:
