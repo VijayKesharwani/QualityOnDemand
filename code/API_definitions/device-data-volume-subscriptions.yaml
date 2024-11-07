@@ -614,9 +614,6 @@ components:
       description: |
         Event types that can be triggered for device data volume monitoring.
       enum:
-        - org.camaraproject.device-data-volume-subscriptions.v0.data-50-percent
-        - org.camaraproject.device-data-volume-subscriptions.v0.data-75-percent
-        - org.camaraproject.device-data-volume-subscriptions.v0.data-90-percent
         - org.camaraproject.device-data-volume-subscriptions.v0.data-usage-threshold
         - org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
 
@@ -1138,7 +1135,7 @@ components:
       value:
         id: "124007"
         source: https://dataUsageServer.supertelco.com
-        type: org.camaraproject.device-data-volume-subscriptions.v0.data-50-percent
+        type: org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
         specversion: "1.0"
         datacontenttype: application/json
         data:
@@ -1152,7 +1149,7 @@ components:
       value:
         id: "124008"
         source: https://dataUsageServer.supertelco.com
-        type: org.camaraproject.device-data-volume-subscriptions.v0.data-75-percent
+        type: org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
         specversion: "1.0"
         datacontenttype: application/json
         data:
@@ -1166,7 +1163,7 @@ components:
       value:
         id: "124009"
         source: https://dataUsageServer.supertelco.com
-        type: org.camaraproject.device-data-volume-subscriptions.v0.data-90-percent
+        type: org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
         specversion: "1.0"
         datacontenttype: application/json
         data:
@@ -1180,7 +1177,7 @@ components:
       value:
         id: "124010"
         source: https://dataUsageServer.supertelco.com
-        type: org.camaraproject.device-data-volume-subscriptions.v0.data-exceeded
+        type: org.camaraproject.device-data-volume-subscriptions.v0.data-usage-exceeded
         specversion: "1.0"
         datacontenttype: application/json
         data:
